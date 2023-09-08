@@ -10,6 +10,7 @@ public partial class Producto
     public string? CodigoBarra { get; set; }
 
     public string? Descripcion { get; set; }
+
     public string? Marca { get; set; }
 
     public int? IdCategoria { get; set; }

@@ -95,8 +95,29 @@ namespace crud_asp.net_core_webapi.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ex);
             }
+        }
 
+        [HttpDelete]
+        [Route("delete/{idProducto:int}")]
+        public ActionResult Delete(int idProducto)
+        {
+            var producto = context.Productos.Find(idProducto);
 
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                context.Productos.Remove(producto);
+                context.SaveChanges();
+                return StatusCode(StatusCodes.Status200OK, producto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
     }
 }
